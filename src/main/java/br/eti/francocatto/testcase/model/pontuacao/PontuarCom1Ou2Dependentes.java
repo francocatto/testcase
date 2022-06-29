@@ -10,7 +10,7 @@ public class PontuarCom1Ou2Dependentes extends CriterioPontuacao{
     @Override
     public void confrontarCriterioEAtualizarPontuacao(Familia familia) {
         List<Pessoa> dependentes = familia.getDependentes();
-        if (!dependentes.isEmpty() && dependentes.size() > 0 && dependentes.size() <= 2) {
+        if (dependentes!= null && !dependentes.isEmpty() && (dependentes.size() >= 1 || dependentes.size() <= 2)) {
             familia.acumularPontos(2);
         }
         if(sucessor !=null)

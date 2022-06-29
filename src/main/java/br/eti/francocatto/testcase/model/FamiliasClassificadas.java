@@ -3,9 +3,10 @@ package br.eti.francocatto.testcase.model;
 import br.eti.francocatto.testcase.model.pontuacao.*;
 
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
-public class FamiliasClassificadas {
+public class FamiliasClassificadas  {
 
     private List<Familia> familiasClassificadas;
 
@@ -19,7 +20,7 @@ public class FamiliasClassificadas {
                 sucessor(new PontuarComMaisDe3Dependentes());
 
         for (Familia familia : this.familiasClassificadas) {
-            familia.atualizarPontuacaoCom(cadeiaDeCriteriosDePontuacao);
+            cadeiaDeCriteriosDePontuacao.confrontarCriterioEAtualizarPontuacao(familia);
         }
         Collections.sort(familiasClassificadas);
         Collections.reverse(familiasClassificadas);
@@ -28,4 +29,10 @@ public class FamiliasClassificadas {
     public Familia get(int i) {
         return this.familiasClassificadas.get(i);
     }
+
+    public int size(){
+        return familiasClassificadas.size();
+    }
+
+
 }

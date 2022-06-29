@@ -11,20 +11,13 @@ public class Familia implements Comparable<Familia> {
 
     private Integer pontuacao = 0;
 
-    public void adicionar(Pessoa... pessoas) {
-        if (pessoas != null && pessoas.length >= 1)
-            for (Pessoa pessoa : pessoas) {
-                adicionar(pessoa);
-            }
-    }
-
     public void adicionar(Pessoa pessoa){
         if (pessoa != null)
             membros.add(pessoa);
     }
 
     public double getRendaTotal() {
-        return membros.stream().filter(pessoa -> !pessoa.isDependente() || pessoa.isConjuge()).mapToDouble(p -> p.getRenda()).sum();
+        return membros.stream().filter(pessoa -> pessoa.isPretendente() || pessoa.isConjuge()).mapToDouble(p -> p.getRenda()).sum();
     }
 
     public Pessoa getPretendente() {
@@ -42,9 +35,5 @@ public class Familia implements Comparable<Familia> {
     @Override
     public int compareTo(Familia outraFamilia) {
         return pontuacao.compareTo(outraFamilia.pontuacao);
-    }
-
-    public void atualizarPontuacaoCom(CriterioPontuacao cadeiaDeCriteriosPontuacao){
-        cadeiaDeCriteriosPontuacao.confrontarCriterioEAtualizarPontuacao(this);
     }
 }
